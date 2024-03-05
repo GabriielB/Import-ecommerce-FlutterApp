@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../users.dart';
+
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
 
@@ -8,6 +10,11 @@ class SignUpPage extends StatefulWidget {
 }
 
 class SignUpPageState extends State<SignUpPage> {
+  final _formKey = GlobalKey<FormState>();
+  late String _name;
+  late String _username;
+  late String _password;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -52,6 +59,57 @@ class SignUpPageState extends State<SignUpPage> {
                         fontSize: 18),
                   ),
                 ),
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      TextFormField(
+                        onChanged: (value) => _name = value,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            'Seu nome não pode ficar vazio';
+                          }
+                          return null;
+                        },
+                        decoration: const InputDecoration(
+                            labelText: 'Digite seu nome: '),
+                      ),
+                      TextFormField(
+                        onChanged: (value) => _username = value,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            'Seu usuário não pode ficar vazio';
+                          }
+                          return null;
+                        },
+                        decoration: const InputDecoration(
+                            labelText: 'Digite seu username: '),
+                      ),
+                      TextFormField(
+                        onChanged: (value) => _password = value,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            'Sua senha não pode ficar vazia';
+                          }
+                          return null;
+                        },
+                        decoration: const InputDecoration(
+                            labelText: 'Digite sua senha: '),
+                        obscureText: true,
+                      ),
+                      ElevatedButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              User newUser = User(_name, _username, _password);
+                              users.add(newUser);
+                              Navigator.pushReplacementNamed(context, '/login');
+                            }
+                          },
+                          child: const Text('Crie sua conta'))
+                    ],
+                  ),
+                )
               ],
             ),
           ),

@@ -1,5 +1,6 @@
 import 'package:al_imports/screens/home_page.dart';
 import 'package:al_imports/screens/login_page.dart';
+import 'package:al_imports/screens/products_page.dart';
 import 'package:al_imports/screens/signup_page.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +24,9 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const HomePage(),
         '/login': (context) => const LoginPage(),
-        '/signup': (context) => const SignUpPage()
+        '/signup': (context) => const SignUpPage(),
+        '/products': (context) => ProductsPage(
+            username: ModalRoute.of(context)!.settings.arguments as String)
       },
     );
   }
