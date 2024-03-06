@@ -65,51 +65,118 @@ class SignUpPageState extends State<SignUpPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        TextFormField(
-                          onChanged: (value) => _name = value,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              'Seu nome não pode ficar vazio';
-                            }
-                            return null;
-                          },
-                          decoration: const InputDecoration(
-                              labelText: 'Digite seu nome: '),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          child: Container(
+                            width: double.infinity,
+                            height: 60,
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            decoration: ShapeDecoration(
+                                color: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                    side: const BorderSide(
+                                        width: 3,
+                                        color:
+                                            Color.fromRGBO(51, 102, 102, 0.7)),
+                                    borderRadius: BorderRadius.circular(40))),
+                            child: TextFormField(
+                              onChanged: (value) => _name = value,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  'Seu nome não pode ficar vazio';
+                                }
+                                return null;
+                              },
+                              decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  labelText: 'Digite seu nome: ',
+                                  labelStyle: TextStyle(
+                                      color: Color.fromRGBO(51, 102, 102, 1),
+                                      height: 0.07)),
+                            ),
+                          ),
                         ),
-                        TextFormField(
-                          onChanged: (value) => _username = value,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              'Seu usuário não pode ficar vazio';
-                            }
-                            return null;
-                          },
-                          decoration: const InputDecoration(
-                              labelText: 'Digite seu username: '),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          child: Container(
+                            width: double.infinity,
+                            height: 60,
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            decoration: ShapeDecoration(
+                                color: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                    side: const BorderSide(
+                                        width: 3,
+                                        color:
+                                            Color.fromRGBO(51, 102, 102, 0.7)),
+                                    borderRadius: BorderRadius.circular(40))),
+                            child: TextFormField(
+                              onChanged: (value) => _username = value,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  'Seu usuário não pode ficar vazio';
+                                }
+                                return null;
+                              },
+                              decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  labelText: 'Digite seu username: ',
+                                  labelStyle: TextStyle(
+                                      color: Color.fromRGBO(51, 102, 102, 1),
+                                      height: 0.07)),
+                            ),
+                          ),
                         ),
-                        TextFormField(
-                          onChanged: (value) => _password = value,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              'Sua senha não pode ficar vazia';
-                            }
-                            return null;
-                          },
-                          decoration: const InputDecoration(
-                              labelText: 'Digite sua senha: '),
-                          obscureText: true,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          child: Container(
+                            width: double.infinity,
+                            height: 60,
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            decoration: ShapeDecoration(
+                                color: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                    side: const BorderSide(
+                                        width: 3,
+                                        color:
+                                            Color.fromRGBO(51, 102, 102, 0.7)),
+                                    borderRadius: BorderRadius.circular(40))),
+                            child: TextFormField(
+                              onChanged: (value) => _password = value,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  'Sua senha não pode ficar vazia';
+                                }
+                                return null;
+                              },
+                              decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  labelText: 'Digite sua senha: ',
+                                  labelStyle: TextStyle(
+                                      color: Color.fromRGBO(51, 102, 102, 1),
+                                      height: 0.07)),
+                              obscureText: true,
+                            ),
+                          ),
                         ),
-                        ElevatedButton(
-                            onPressed: () {
-                              if (_formKey.currentState!.validate()) {
-                                User newUser =
-                                    User(_name, _username, _password);
-                                users.add(newUser);
-                                Navigator.pushReplacementNamed(
-                                    context, '/login');
-                              }
-                            },
-                            child: const Text('Crie sua conta'))
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          child: SizedBox(
+                            width: double.infinity,
+                            height: 50,
+                            child: ElevatedButton(
+                                onPressed: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    User newUser =
+                                        User(_name, _username, _password);
+                                    users.add(newUser);
+                                    Navigator.pushReplacementNamed(
+                                        context, '/login');
+                                  }
+                                },
+                                child: const Text('Crie sua conta')),
+                          ),
+                        )
                       ],
                     ),
                   )

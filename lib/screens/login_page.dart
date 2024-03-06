@@ -62,48 +62,97 @@ class LoginPageState extends State<LoginPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          TextFormField(
-                            onChanged: (value) => _username = value,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Por favor preencha o campo de nome do usuário';
-                              }
-                              return null;
-                            },
-                            decoration: const InputDecoration(
-                                labelText: 'Digite seu username'),
-                          ),
-                          TextFormField(
-                            onChanged: (value) => _password = value,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Por favor preencha o campo de senha';
-                              }
-                              return null;
-                            },
-                            decoration: const InputDecoration(
-                                labelText: "Digite sua senha"),
-                            obscureText: true,
-                          ),
-                          ElevatedButton(
-                              onPressed: () {
-                                if (_formKey.currentState!.validate()) {
-                                  bool userExists = users.any((user) =>
-                                      user.username == _username &&
-                                      user.password == _password);
-                                  if (userExists) {
-                                    Navigator.pushReplacementNamed(
-                                        context, '/products',
-                                        arguments: _username);
-                                  } else {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                        const SnackBar(
-                                            content: Text(
-                                                "Usuário ou senha incorretos")));
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8),
+                            child: Container(
+                              width: double.infinity,
+                              height: 60,
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16),
+                              decoration: ShapeDecoration(
+                                  color: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                      side: const BorderSide(
+                                          width: 3,
+                                          color: Color.fromRGBO(
+                                              51, 102, 102, 0.7)),
+                                      borderRadius: BorderRadius.circular(40))),
+                              child: TextFormField(
+                                onChanged: (value) => _username = value,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Por favor preencha o campo de nome do usuário';
                                   }
-                                }
-                              },
-                              child: const Text('Login'))
+                                  return null;
+                                },
+                                decoration: const InputDecoration(
+                                    border: InputBorder.none,
+                                    labelText: 'Digite seu username: ',
+                                    labelStyle: TextStyle(
+                                        color: Color.fromRGBO(51, 102, 102, 1),
+                                        height: 0.07)),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8),
+                            child: Container(
+                              width: double.infinity,
+                              height: 60,
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16),
+                              decoration: ShapeDecoration(
+                                  color: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                      side: const BorderSide(
+                                          width: 3,
+                                          color: Color.fromRGBO(
+                                              51, 102, 102, 0.7)),
+                                      borderRadius: BorderRadius.circular(40))),
+                              child: TextFormField(
+                                onChanged: (value) => _password = value,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Por favor preencha o campo de senha';
+                                  }
+                                  return null;
+                                },
+                                decoration: const InputDecoration(
+                                    border: InputBorder.none,
+                                    labelText: 'Digite sua senha: ',
+                                    labelStyle: TextStyle(
+                                        color: Color.fromRGBO(51, 102, 102, 1),
+                                        height: 0.07)),
+                                obscureText: true,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8),
+                            child: SizedBox(
+                              width: double.infinity,
+                              height: 50,
+                              child: ElevatedButton(
+                                  onPressed: () {
+                                    if (_formKey.currentState!.validate()) {
+                                      bool userExists = users.any((user) =>
+                                          user.username == _username &&
+                                          user.password == _password);
+                                      if (userExists) {
+                                        Navigator.pushReplacementNamed(
+                                            context, '/products',
+                                            arguments: _username);
+                                      } else {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(const SnackBar(
+                                                content: Text(
+                                                    "Usuário ou senha incorretos")));
+                                      }
+                                    }
+                                  },
+                                  child: const Text('Login')),
+                            ),
+                          )
                         ],
                       ))
                 ],
