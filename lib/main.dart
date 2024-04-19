@@ -1,7 +1,7 @@
-import 'package:al_imports/screens/home_page.dart';
-import 'package:al_imports/screens/login_page.dart';
-import 'package:al_imports/screens/products_page.dart';
-import 'package:al_imports/screens/signup_page.dart';
+import 'package:al_imports/screens/welcome/welcome_page.dart';
+import 'package:al_imports/screens/login/login_page.dart';
+import 'package:al_imports/screens/home/home_page.dart';
+import 'package:al_imports/screens/sign_up/signup_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -22,11 +22,10 @@ class MyApp extends StatelessWidget {
           fontFamily: 'Roboto'),
       initialRoute: '/',
       routes: {
-        '/': (context) => const HomePage(),
+        '/': (context) => const WelcomePage(),
         '/login': (context) => const LoginPage(),
         '/signup': (context) => const SignUpPage(),
-        '/products': (context) => ProductsPage(
-            username: ModalRoute.of(context)!.settings.arguments as String)
+        '/home': (context) => HomePage(),
       },
     );
   }

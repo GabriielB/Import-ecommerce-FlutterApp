@@ -1,5 +1,5 @@
+import 'package:al_imports/screens/login/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
-import '../users.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -9,9 +9,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class LoginPageState extends State<LoginPage> {
-  final _formKey = GlobalKey<FormState>();
-  late String _username;
-  late String _password;
+  final LoginController _controller = LoginController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -58,7 +57,7 @@ class LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   Form(
-                      key: _formKey,
+                      key: _controller.formKey,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
@@ -78,13 +77,8 @@ class LoginPageState extends State<LoginPage> {
                                               51, 102, 102, 0.7)),
                                       borderRadius: BorderRadius.circular(40))),
                               child: TextFormField(
-                                onChanged: (value) => _username = value,
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Por favor preencha o campo de nome do usuário';
-                                  }
-                                  return null;
-                                },
+                                onChanged: _controller.setUsername,
+                                validator: _controller.validateUsername,
                                 decoration: const InputDecoration(
                                     border: InputBorder.none,
                                     labelText: 'Digite seu username: ',
@@ -110,13 +104,8 @@ class LoginPageState extends State<LoginPage> {
                                               51, 102, 102, 0.7)),
                                       borderRadius: BorderRadius.circular(40))),
                               child: TextFormField(
-                                onChanged: (value) => _password = value,
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Por favor preencha o campo de senha';
-                                  }
-                                  return null;
-                                },
+                                onChanged: _controller.setPassword,
+                                validator: _controller.validatePassword,
                                 decoration: const InputDecoration(
                                     border: InputBorder.none,
                                     labelText: 'Digite sua senha: ',
@@ -134,20 +123,14 @@ class LoginPageState extends State<LoginPage> {
                               height: 50,
                               child: ElevatedButton(
                                   onPressed: () {
-                                    if (_formKey.currentState!.validate()) {
-                                      bool userExists = users.any((user) =>
-                                          user.username == _username &&
-                                          user.password == _password);
-                                      if (userExists) {
-                                        Navigator.pushReplacementNamed(
-                                            context, '/products',
-                                            arguments: _username);
-                                      } else {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(const SnackBar(
-                                                content: Text(
-                                                    "Usuário ou senha incorretos")));
-                                      }
+                                    if (_controller.handleLogin()) {
+                                      Navigator.pushReplacementNamed(
+                                          context, '/home');
+                                    } else {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(const SnackBar(
+                                              content: Text(
+                                                  "Usuário ou senha incorretos")));
                                     }
                                   },
                                   child: const Text('Login')),

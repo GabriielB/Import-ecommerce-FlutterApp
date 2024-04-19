@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import './controllers/signup_controller.dart';
 
-import '../users.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -10,10 +10,7 @@ class SignUpPage extends StatefulWidget {
 }
 
 class SignUpPageState extends State<SignUpPage> {
-  final _formKey = GlobalKey<FormState>();
-  late String _name;
-  late String _username;
-  late String _password;
+  final SignUpController _controller = SignUpController();
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +58,7 @@ class SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                   Form(
-                    key: _formKey,
+                    key: _controller.formkey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -80,13 +77,8 @@ class SignUpPageState extends State<SignUpPage> {
                                             Color.fromRGBO(51, 102, 102, 0.7)),
                                     borderRadius: BorderRadius.circular(40))),
                             child: TextFormField(
-                              onChanged: (value) => _name = value,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  'Seu nome não pode ficar vazio';
-                                }
-                                return null;
-                              },
+                              onChanged: _controller.setName,
+                              validator: _controller.validateName,
                               decoration: const InputDecoration(
                                   border: InputBorder.none,
                                   labelText: 'Digite seu nome: ',
@@ -111,13 +103,8 @@ class SignUpPageState extends State<SignUpPage> {
                                             Color.fromRGBO(51, 102, 102, 0.7)),
                                     borderRadius: BorderRadius.circular(40))),
                             child: TextFormField(
-                              onChanged: (value) => _username = value,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  'Seu usuário não pode ficar vazio';
-                                }
-                                return null;
-                              },
+                              onChanged: _controller.setUsername,
+                              validator: _controller.validateUsername,
                               decoration: const InputDecoration(
                                   border: InputBorder.none,
                                   labelText: 'Digite seu username: ',
@@ -142,13 +129,8 @@ class SignUpPageState extends State<SignUpPage> {
                                             Color.fromRGBO(51, 102, 102, 0.7)),
                                     borderRadius: BorderRadius.circular(40))),
                             child: TextFormField(
-                              onChanged: (value) => _password = value,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  'Sua senha não pode ficar vazia';
-                                }
-                                return null;
-                              },
+                              onChanged: _controller.setPassword,
+                              validator: _controller.validatePassword,
                               decoration: const InputDecoration(
                                   border: InputBorder.none,
                                   labelText: 'Digite sua senha: ',
@@ -166,12 +148,14 @@ class SignUpPageState extends State<SignUpPage> {
                             height: 50,
                             child: ElevatedButton(
                                 onPressed: () {
-                                  if (_formKey.currentState!.validate()) {
-                                    User newUser =
-                                        User(_name, _username, _password);
-                                    users.add(newUser);
+                                  if (_controller.handleSignUp()) {
                                     Navigator.pushReplacementNamed(
                                         context, '/login');
+                                  } else {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        const SnackBar(
+                                            content:
+                                                Text("Usuário já existe")));
                                   }
                                 },
                                 child: const Text('Crie sua conta')),
