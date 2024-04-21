@@ -21,21 +21,16 @@ class _ProductContainerState extends State<ProductContainer> {
       ),
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Icon(
-                Icons.add_shopping_cart_rounded,
-                color: Color.fromRGBO(51, 102, 102, 1),
-              )
-            ],
-          ),
-          SizedBox(
-            height: 100,
-            width: 100,
-            child: Image.asset(
-              widget.product.image,
-              fit: BoxFit.cover,
+
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: SizedBox(
+              height: 100,
+              width: 100,
+              child: Image.asset(
+                widget.product.image,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           Text(

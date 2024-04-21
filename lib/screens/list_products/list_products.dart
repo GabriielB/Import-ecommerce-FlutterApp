@@ -1,4 +1,5 @@
 import 'package:al_imports/models/product_list.dart';
+import 'package:al_imports/screens/product_details/product_details.dart';
 import 'package:al_imports/widgets/product_container.dart';
 import 'package:flutter/material.dart';
 
@@ -42,8 +43,11 @@ class _ListProductsPageState extends State<ListProductsPage> {
         itemCount: ProductList.allProducts.length,
         itemBuilder: (context, index) {
           final allProducts = ProductList.allProducts[index];
-          return ProductContainer(
-            product: allProducts,
+          return GestureDetector(
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ProductDetailsPage(product: allProducts))),
+            child: ProductContainer(
+              product: allProducts,
+            ),
           );
         },
       );
@@ -58,8 +62,11 @@ class _ListProductsPageState extends State<ListProductsPage> {
         itemCount: ProductList.gamesList.length,
         itemBuilder: (context, index) {
           final gamesList = ProductList.gamesList[index];
-          return ProductContainer(
-            product: gamesList,
+          return GestureDetector(
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ProductDetailsPage(product: gamesList))),
+            child: ProductContainer(
+              product: gamesList,
+            ),
           );
         },
       );
@@ -74,8 +81,11 @@ class _ListProductsPageState extends State<ListProductsPage> {
         itemCount: ProductList.videoGamesList.length,
         itemBuilder: (context, index) {
           final videoGamesList = ProductList.videoGamesList[index];
-          return ProductContainer(
-            product: videoGamesList,
+          return GestureDetector(
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ProductDetailsPage(product: videoGamesList))),
+            child: ProductContainer(
+              product: videoGamesList,
+            ),
           );
         },
       );
