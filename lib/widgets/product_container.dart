@@ -31,8 +31,8 @@ class _ProductContainerState extends State<ProductContainer> {
             ],
           ),
           SizedBox(
-            height: 130,
-            width: 130,
+            height: 100,
+            width: 100,
             child: Image.asset(
               widget.product.image,
               fit: BoxFit.cover,

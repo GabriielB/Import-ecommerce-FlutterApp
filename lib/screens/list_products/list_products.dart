@@ -96,13 +96,16 @@ class _ListProductsPageState extends State<ListProductsPage> {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                buildProductCategory(index: 0, name: "Todos"),
-                buildProductCategory(index: 1, name: "Jogos"),
-                buildProductCategory(index: 2, name: "Consoles")
-              ],
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  buildProductCategory(index: 0, name: "Todos"),
+                  buildProductCategory(index: 1, name: "Jogos"),
+                  buildProductCategory(index: 2, name: "Consoles")
+                ],
+              ),
             ),
           ),
           const SizedBox(
