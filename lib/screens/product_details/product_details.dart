@@ -1,3 +1,4 @@
+import 'package:al_imports/providers/cart_provider.dart';
 import 'package:flutter/material.dart';
 import '../../models/product.dart';
 
@@ -8,6 +9,8 @@ class ProductDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = CartProvider.of(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -21,7 +24,9 @@ class ProductDetailsPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(height: 10,),
+            const SizedBox(
+              height: 10,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -91,7 +96,11 @@ class ProductDetailsPage extends StatelessWidget {
                     color: Colors.white),
               ),
               ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  provider.toogleProduct(product);
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text("Produto adicionado ao carrinho")));
+                },
                 icon: const Icon(Icons.add),
                 label: const Text("Carrinho"),
               )

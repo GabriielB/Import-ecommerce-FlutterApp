@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
         title: const Text("Al-Imports", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),),
         centerTitle: true,
         backgroundColor: Color.fromRGBO(51, 102, 102, 1),
-        iconTheme: IconThemeData(color: Colors.white),
+        automaticallyImplyLeading: false,
       ),
       body: screens[screenIndex],
       bottomNavigationBar: BottomNavigationBar(
