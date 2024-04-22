@@ -1,5 +1,8 @@
 import 'package:al_imports/screens/login/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../providers/loggedInUser.dart';
+import '../home/home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -124,8 +127,14 @@ class LoginPageState extends State<LoginPage> {
                               child: ElevatedButton(
                                   onPressed: () {
                                     if (_controller.handleLogin()) {
-                                      Navigator.pushReplacementNamed(
-                                          context, '/home');
+                                      String username = _controller.getUsername();
+                                      Provider.of<LoggedInUser>(context, listen: false).setUsername(username);
+                                      Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => HomePage(username: username),
+                                        ),
+                                      );
                                     } else {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(const SnackBar(

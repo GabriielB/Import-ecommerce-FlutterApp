@@ -1,4 +1,5 @@
 import 'package:al_imports/providers/cart_provider.dart';
+import 'package:al_imports/providers/loggedInUser.dart';
 import 'package:al_imports/screens/welcome/welcome_page.dart';
 import 'package:al_imports/screens/login/login_page.dart';
 import 'package:al_imports/screens/home/home_page.dart';
@@ -15,7 +16,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MultiProvider(
-        providers: [ChangeNotifierProvider(create: (_) => CartProvider())],
+        providers: [
+          ChangeNotifierProvider(create: (_) => CartProvider()),
+          ChangeNotifierProvider(create: (_) => LoggedInUser(''))
+        ],
         child: MaterialApp(
           title: 'Al-Imports',
           theme: ThemeData(
@@ -28,7 +32,7 @@ class MyApp extends StatelessWidget {
             '/': (context) => const WelcomePage(),
             '/login': (context) => const LoginPage(),
             '/signup': (context) => const SignUpPage(),
-            '/home': (context) => HomePage(),
+            '/home': (context) => HomePage(username: Provider.of<LoggedInUser>(context).username),
           },
         ),
       );

@@ -2,6 +2,9 @@ import 'package:al_imports/models/product_list.dart';
 import 'package:al_imports/screens/product_details/product_details.dart';
 import 'package:al_imports/widgets/product_container.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../providers/loggedInUser.dart';
 
 class ListProductsPage extends StatefulWidget {
   const ListProductsPage({super.key});
@@ -92,13 +95,14 @@ class _ListProductsPageState extends State<ListProductsPage> {
 
   @override
   Widget build(BuildContext context) {
+    var loggedInUser = Provider.of<LoggedInUser>(context);
     return Padding(
       padding: EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Olá Usuario!",
+            "Olá ${loggedInUser.username}!",
             style: TextStyle(
                 color: Color.fromRGBO(51, 102, 102, 1),
                 fontWeight: FontWeight.bold,

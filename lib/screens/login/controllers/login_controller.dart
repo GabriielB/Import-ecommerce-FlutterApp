@@ -36,4 +36,8 @@ class LoginController {
   void setPassword(String password) {
     _password = password;
   }
+
+  String getUsername() {
+    return _username;
+  }
 }

@@ -2,9 +2,13 @@ import 'package:al_imports/screens/list_products/list_products.dart';
 import 'package:al_imports/screens/profile/profile_page.dart';
 import 'package:al_imports/screens/shopping_cart/shopping_cart.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../providers/loggedInUser.dart';
+import '../login/controllers/login_controller.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key, required this.username}) : super(key: key);
+  final String username;
 
   @override
   State<HomePage> createState() => _HomePageState();
