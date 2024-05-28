@@ -80,6 +80,9 @@ class WelcomePageState extends State<WelcomePage> {
                             )),
                       ),
                     ),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     Container(
                       height: 48,
                       width: double.infinity,

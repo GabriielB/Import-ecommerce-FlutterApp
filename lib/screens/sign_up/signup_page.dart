@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import './controllers/signup_controller.dart';
 
-
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
 
@@ -81,12 +80,15 @@ class SignUpPageState extends State<SignUpPage> {
                               validator: _controller.validateName,
                               decoration: const InputDecoration(
                                   border: InputBorder.none,
-                                  labelText: 'Digite seu nome: ',
-                                  labelStyle: TextStyle(
+                                  hintText: 'Digite seu nome: ',
+                                  hintStyle: TextStyle(
                                       color: Color.fromRGBO(51, 102, 102, 1),
                                       height: 0.07)),
                             ),
                           ),
+                        ),
+                        const SizedBox(
+                          height: 10,
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8),
@@ -107,12 +109,15 @@ class SignUpPageState extends State<SignUpPage> {
                               validator: _controller.validateUsername,
                               decoration: const InputDecoration(
                                   border: InputBorder.none,
-                                  labelText: 'Digite seu username: ',
-                                  labelStyle: TextStyle(
+                                  hintText: 'Digite seu username: ',
+                                  hintStyle: TextStyle(
                                       color: Color.fromRGBO(51, 102, 102, 1),
                                       height: 0.07)),
                             ),
                           ),
+                        ),
+                        const SizedBox(
+                          height: 10,
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8),
@@ -133,13 +138,16 @@ class SignUpPageState extends State<SignUpPage> {
                               validator: _controller.validatePassword,
                               decoration: const InputDecoration(
                                   border: InputBorder.none,
-                                  labelText: 'Digite sua senha: ',
-                                  labelStyle: TextStyle(
+                                  hintText: 'Digite sua senha: ',
+                                  hintStyle: TextStyle(
                                       color: Color.fromRGBO(51, 102, 102, 1),
                                       height: 0.07)),
                               obscureText: true,
                             ),
                           ),
+                        ),
+                        const SizedBox(
+                          height: 10,
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8),

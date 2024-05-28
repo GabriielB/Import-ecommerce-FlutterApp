@@ -84,8 +84,8 @@ class LoginPageState extends State<LoginPage> {
                                 validator: _controller.validateUsername,
                                 decoration: const InputDecoration(
                                     border: InputBorder.none,
-                                    labelText: 'Digite seu username: ',
-                                    labelStyle: TextStyle(
+                                    hintText: 'Digite seu username: ',
+                                    hintStyle: TextStyle(
                                         color: Color.fromRGBO(51, 102, 102, 1),
                                         height: 0.07)),
                               ),
@@ -111,8 +111,8 @@ class LoginPageState extends State<LoginPage> {
                                 validator: _controller.validatePassword,
                                 decoration: const InputDecoration(
                                     border: InputBorder.none,
-                                    labelText: 'Digite sua senha: ',
-                                    labelStyle: TextStyle(
+                                    hintText: 'Digite sua senha: ',
+                                    hintStyle: TextStyle(
                                         color: Color.fromRGBO(51, 102, 102, 1),
                                         height: 0.07)),
                                 obscureText: true,
@@ -127,12 +127,16 @@ class LoginPageState extends State<LoginPage> {
                               child: ElevatedButton(
                                   onPressed: () {
                                     if (_controller.handleLogin()) {
-                                      String username = _controller.getUsername();
-                                      Provider.of<LoggedInUser>(context, listen: false).setUsername(username);
+                                      String username =
+                                          _controller.getUsername();
+                                      Provider.of<LoggedInUser>(context,
+                                              listen: false)
+                                          .setUsername(username);
                                       Navigator.pushReplacement(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => HomePage(username: username),
+                                          builder: (context) =>
+                                              HomePage(username: username),
                                         ),
                                       );
                                     } else {
