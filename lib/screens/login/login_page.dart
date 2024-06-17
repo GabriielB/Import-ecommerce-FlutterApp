@@ -1,17 +1,14 @@
-import 'package:al_imports/screens/login/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../../providers/loggedInUser.dart';
-import '../home/home_page.dart';
+import './controllers/login_controller.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
   @override
-  State<LoginPage> createState() => LoginPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class LoginPageState extends State<LoginPage> {
+class _LoginPageState extends State<LoginPage> {
   final LoginController _controller = LoginController();
 
   @override
@@ -51,7 +48,7 @@ class LoginPageState extends State<LoginPage> {
                   const Padding(
                     padding: EdgeInsets.only(bottom: 8.0),
                     child: Text(
-                      "Insira seus dados \npara realizar o login",
+                      "Preencha os campos com seus\ndados para fazer login",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.white,
@@ -60,97 +57,92 @@ class LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   Form(
-                      key: _controller.formKey,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8),
-                            child: Container(
-                              width: double.infinity,
-                              height: 60,
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16),
-                              decoration: ShapeDecoration(
-                                  color: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                      side: const BorderSide(
-                                          width: 3,
-                                          color: Color.fromRGBO(
-                                              51, 102, 102, 0.7)),
-                                      borderRadius: BorderRadius.circular(40))),
-                              child: TextFormField(
-                                onChanged: _controller.setUsername,
-                                validator: _controller.validateUsername,
-                                decoration: const InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: 'Digite seu username: ',
-                                    hintStyle: TextStyle(
-                                        color: Color.fromRGBO(51, 102, 102, 1),
-                                        height: 0.07)),
-                              ),
+                    key: _controller.formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          child: Container(
+                            width: double.infinity,
+                            height: 60,
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            decoration: ShapeDecoration(
+                                color: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                    side: const BorderSide(
+                                        width: 3,
+                                        color:
+                                            Color.fromRGBO(51, 102, 102, 0.7)),
+                                    borderRadius: BorderRadius.circular(40))),
+                            child: TextFormField(
+                              onChanged: _controller.setEmail,
+                              validator: _controller.validateEmail,
+                              decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: 'Digite seu Email: ',
+                                  hintStyle: TextStyle(
+                                      color: Color.fromRGBO(51, 102, 102, 1),
+                                      height: 0.07)),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8),
-                            child: Container(
-                              width: double.infinity,
-                              height: 60,
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16),
-                              decoration: ShapeDecoration(
-                                  color: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                      side: const BorderSide(
-                                          width: 3,
-                                          color: Color.fromRGBO(
-                                              51, 102, 102, 0.7)),
-                                      borderRadius: BorderRadius.circular(40))),
-                              child: TextFormField(
-                                onChanged: _controller.setPassword,
-                                validator: _controller.validatePassword,
-                                decoration: const InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: 'Digite sua senha: ',
-                                    hintStyle: TextStyle(
-                                        color: Color.fromRGBO(51, 102, 102, 1),
-                                        height: 0.07)),
-                                obscureText: true,
-                              ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          child: Container(
+                            width: double.infinity,
+                            height: 60,
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            decoration: ShapeDecoration(
+                                color: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                    side: const BorderSide(
+                                        width: 3,
+                                        color:
+                                            Color.fromRGBO(51, 102, 102, 0.7)),
+                                    borderRadius: BorderRadius.circular(40))),
+                            child: TextFormField(
+                              onChanged: _controller.setPassword,
+                              validator: _controller.validatePassword,
+                              decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: 'Digite sua senha: ',
+                                  hintStyle: TextStyle(
+                                      color: Color.fromRGBO(51, 102, 102, 1),
+                                      height: 0.07)),
+                              obscureText: true,
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8),
-                            child: SizedBox(
-                              width: double.infinity,
-                              height: 50,
-                              child: ElevatedButton(
-                                  onPressed: () {
-                                    if (_controller.handleLogin()) {
-                                      String username =
-                                          _controller.getUsername();
-                                      Provider.of<LoggedInUser>(context,
-                                              listen: false)
-                                          .setUsername(username);
-                                      Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              HomePage(username: username),
-                                        ),
-                                      );
-                                    } else {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(const SnackBar(
-                                              content: Text(
-                                                  "Usuário ou senha incorretos")));
-                                    }
-                                  },
-                                  child: const Text('Login')),
-                            ),
-                          )
-                        ],
-                      ))
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          child: SizedBox(
+                            width: double.infinity,
+                            height: 50,
+                            child: ElevatedButton(
+                                onPressed: () async {
+                                  if (await _controller.handleLogin(context)) {
+                                    Navigator.pushReplacementNamed(
+                                        context, '/home');
+                                  } else {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        const SnackBar(
+                                            content:
+                                                Text("Erro ao fazer login")));
+                                  }
+                                },
+                                child: const Text('Login')),
+                          ),
+                        )
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),

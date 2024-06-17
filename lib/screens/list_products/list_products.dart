@@ -47,7 +47,11 @@ class _ListProductsPageState extends State<ListProductsPage> {
         itemBuilder: (context, index) {
           final allProducts = ProductList.allProducts[index];
           return GestureDetector(
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ProductDetailsPage(product: allProducts))),
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        ProductDetailsPage(product: allProducts))),
             child: ProductContainer(
               product: allProducts,
             ),
@@ -66,7 +70,11 @@ class _ListProductsPageState extends State<ListProductsPage> {
         itemBuilder: (context, index) {
           final gamesList = ProductList.gamesList[index];
           return GestureDetector(
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ProductDetailsPage(product: gamesList))),
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        ProductDetailsPage(product: gamesList))),
             child: ProductContainer(
               product: gamesList,
             ),
@@ -85,7 +93,11 @@ class _ListProductsPageState extends State<ListProductsPage> {
         itemBuilder: (context, index) {
           final videoGamesList = ProductList.videoGamesList[index];
           return GestureDetector(
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ProductDetailsPage(product: videoGamesList))),
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        ProductDetailsPage(product: videoGamesList))),
             child: ProductContainer(
               product: videoGamesList,
             ),
@@ -102,7 +114,7 @@ class _ListProductsPageState extends State<ListProductsPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Olá ${loggedInUser.username}!",
+            "Olá ${loggedInUser.email}!",
             style: TextStyle(
                 color: Color.fromRGBO(51, 102, 102, 1),
                 fontWeight: FontWeight.bold,
@@ -127,10 +139,10 @@ class _ListProductsPageState extends State<ListProductsPage> {
           ),
           Expanded(
             child: isSelected == 0
-              ? buildAllProducts()
-            : isSelected == 1
-        ? buildGames()
-        : buildVideoGames(),
+                ? buildAllProducts()
+                : isSelected == 1
+                    ? buildGames()
+                    : buildVideoGames(),
           )
         ],
       ),

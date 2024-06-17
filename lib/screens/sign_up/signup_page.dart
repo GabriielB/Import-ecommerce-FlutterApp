@@ -57,7 +57,7 @@ class SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                   Form(
-                    key: _controller.formkey,
+                    key: _controller.formKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -76,6 +76,7 @@ class SignUpPageState extends State<SignUpPage> {
                                             Color.fromRGBO(51, 102, 102, 0.7)),
                                     borderRadius: BorderRadius.circular(40))),
                             child: TextFormField(
+                              controller: _controller.nameController,
                               onChanged: _controller.setName,
                               validator: _controller.validateName,
                               decoration: const InputDecoration(
@@ -105,11 +106,12 @@ class SignUpPageState extends State<SignUpPage> {
                                             Color.fromRGBO(51, 102, 102, 0.7)),
                                     borderRadius: BorderRadius.circular(40))),
                             child: TextFormField(
-                              onChanged: _controller.setUsername,
-                              validator: _controller.validateUsername,
+                              controller: _controller.emailController,
+                              onChanged: _controller.setEmail,
+                              validator: _controller.validateEmail,
                               decoration: const InputDecoration(
                                   border: InputBorder.none,
-                                  hintText: 'Digite seu username: ',
+                                  hintText: 'Digite seu Email: ',
                                   hintStyle: TextStyle(
                                       color: Color.fromRGBO(51, 102, 102, 1),
                                       height: 0.07)),
@@ -134,6 +136,7 @@ class SignUpPageState extends State<SignUpPage> {
                                             Color.fromRGBO(51, 102, 102, 0.7)),
                                     borderRadius: BorderRadius.circular(40))),
                             child: TextFormField(
+                              controller: _controller.passwordController,
                               onChanged: _controller.setPassword,
                               validator: _controller.validatePassword,
                               decoration: const InputDecoration(
@@ -155,15 +158,17 @@ class SignUpPageState extends State<SignUpPage> {
                             width: double.infinity,
                             height: 50,
                             child: ElevatedButton(
-                                onPressed: () {
-                                  if (_controller.handleSignUp()) {
+                                onPressed: () async {
+                                  bool success =
+                                      await _controller.handleSignUp(context);
+                                  if (success) {
                                     Navigator.pushReplacementNamed(
                                         context, '/login');
                                   } else {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                         const SnackBar(
-                                            content:
-                                                Text("Usuário já existe")));
+                                            content: Text(
+                                                "Falha ao realizar login")));
                                   }
                                 },
                                 child: const Text('Crie sua conta')),

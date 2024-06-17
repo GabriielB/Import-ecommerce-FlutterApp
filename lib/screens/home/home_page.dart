@@ -4,8 +4,8 @@ import 'package:al_imports/screens/shopping_cart/shopping_cart.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key, required this.username}) : super(key: key);
-  final String username;
+  const HomePage({Key? key, required this.email}) : super(key: key);
+  final String email;
 
   @override
   State<HomePage> createState() => _HomePageState();

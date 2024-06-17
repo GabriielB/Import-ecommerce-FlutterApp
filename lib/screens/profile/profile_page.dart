@@ -10,7 +10,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class _ProfilePageState extends State<ProfilePage> {
             height: 20,
           ),
           Text(
-            "Username: ${loggedInUser.username}",
+            "Email: ${loggedInUser.email}",
             style: const TextStyle(
                 color: Color.fromRGBO(51, 102, 102, 1),
                 fontWeight: FontWeight.bold,
@@ -54,9 +54,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                 color: Color.fromRGBO(51, 102, 102, 0.7)),
                             borderRadius: BorderRadius.circular(40))),
                     child: TextFormField(
-                      controller: _usernameController,
+                      controller: _emailController,
                       decoration: const InputDecoration(
-                        labelText: 'Novo Username',
+                        labelText: 'Novo Email',
                         border: InputBorder.none,
                       ),
                     ),
@@ -66,11 +66,11 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      String newUsername = _usernameController.text;
-                      loggedInUser.setUsername(newUsername);
-                      _usernameController.clear();
+                      String newEmail = _emailController.text;
+                      loggedInUser.setEmail(newEmail);
+                      _emailController.clear();
                     },
-                    child: const Text("Alterar username"),
+                    child: const Text("Alterar email"),
                   ),
                 ],
               ),

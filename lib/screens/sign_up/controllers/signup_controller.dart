@@ -1,11 +1,13 @@
+import 'package:al_imports/services/auth_service.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../../models/users.dart';
 
 class SignUpController {
-  late String _nome;
-  late String _username;
-  late String _password;
-  final GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final AuthService _authService = AuthService();
 
   String? validateName(String? value) {
     if (value == null || value.isEmpty) {
@@ -14,9 +16,13 @@ class SignUpController {
     return null;
   }
 
-  String? validateUsername(String? value) {
+  String? validateEmail(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Por favor preencha o campo de username';
+      return 'Por favor preencha o campo de Email';
+    }
+    final emailRegExp = RegExp(r'^[^@]+@[^@]+\.[^@]+');
+    if (!emailRegExp.hasMatch(value)) {
+      return 'Por favor insira um Email válido';
     }
     return null;
   }
@@ -25,35 +31,39 @@ class SignUpController {
     if (value == null || value.isEmpty) {
       return 'Por favor preencha o campo de senha';
     }
+    if (value.length < 6) {
+      return 'A senha deve ter pelo menos 6 caracteres';
+    }
     return null;
   }
 
-  bool handleSignUp() {
-    bool userNotExists = true;
-    if (formkey.currentState!.validate()) {
-      userNotExists = users.every((user) => user.username != _username);
-      if (userNotExists) {
-        users.add(User(
-          _nome,
-          _username,
-          _password,
-        ));
-        return true;
-      }
-    }
-    return false;
-  }
-
-
   void setName(String name) {
-    _nome = name;
+    nameController.text = name;
   }
 
-  void setUsername(String username) {
-    _username = username;
+  void setEmail(String email) {
+    emailController.text = email;
   }
 
   void setPassword(String password) {
-    _password = password;
+    passwordController.text = password;
+  }
+
+  Future<bool> handleSignUp(BuildContext context) async {
+    if (formKey.currentState!.validate()) {
+      String? errorMessage = await _authService.signupUser(
+        name: nameController.text,
+        email: emailController.text,
+        password: passwordController.text,
+      );
+      if (errorMessage == null) {
+        return true;
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("Houve um Erro: $errorMessage")));
+        return false;
+      }
+    }
+    return false;
   }
 }

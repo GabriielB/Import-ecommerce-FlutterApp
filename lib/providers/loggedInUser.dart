@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 
 class LoggedInUser extends ChangeNotifier {
-  late String _username;
+  late String _email;
 
-  LoggedInUser(this._username);
+  LoggedInUser(this._email);
 
-  String get username => _username;
+  String get email => _email;
 
-  void setUsername(String newUsername) {
-    _username = newUsername;
+  void setEmail(String newEmail) {
+    _email = email;
     notifyListeners();
   }
 }
-
