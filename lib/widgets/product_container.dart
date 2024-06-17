@@ -35,18 +35,18 @@ class _ProductContainerState extends State<ProductContainer> {
           ),
           Text(
             widget.product.name,
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
           Text(
             widget.product.category,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
                 color: Color.fromRGBO(51, 102, 102, 1)),
           ),
           Text(
             "R\$ ${widget.product.price}",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ],
       ),

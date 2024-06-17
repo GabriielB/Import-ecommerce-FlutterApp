@@ -22,16 +22,16 @@ class _ListProductsPageState extends State<ListProductsPage> {
         child: Container(
           width: 100,
           height: 40,
-          margin: EdgeInsets.only(top: 10, right: 10),
+          margin: const EdgeInsets.only(top: 10, right: 10),
           alignment: Alignment.center,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: isSelected == index
-                  ? Color.fromRGBO(51, 102, 102, 1)
-                  : Color.fromRGBO(51, 102, 102, 0.7)),
+                  ? const Color.fromRGBO(51, 102, 102, 1)
+                  : const Color.fromRGBO(51, 102, 102, 0.7)),
           child: Text(
             name,
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
           ),
         ),
       );
@@ -109,13 +109,13 @@ class _ListProductsPageState extends State<ListProductsPage> {
   Widget build(BuildContext context) {
     var loggedInUser = Provider.of<LoggedInUser>(context);
     return Padding(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             "Olá ${loggedInUser.email}!",
-            style: TextStyle(
+            style: const TextStyle(
                 color: Color.fromRGBO(51, 102, 102, 1),
                 fontWeight: FontWeight.bold,
                 fontSize: 26),

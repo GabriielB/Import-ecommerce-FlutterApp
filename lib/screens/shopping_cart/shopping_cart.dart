@@ -16,7 +16,7 @@ class ShoppingCart extends StatelessWidget {
       child: Column(
         children: [
           const Padding(
-            padding: const EdgeInsets.only(top: 20, left: 20),
+            padding: EdgeInsets.only(top: 20, left: 20),
             child: Text(
               "Carrinho",
               style: TextStyle(
@@ -55,7 +55,7 @@ class ShoppingCart extends StatelessWidget {
                           fontSize: 20,
                           fontWeight: FontWeight.bold),
                     ),
-                    tileColor: Color.fromRGBO(51, 102, 102, 1),
+                    tileColor: const Color.fromRGBO(51, 102, 102, 1),
                   ),
                 );
               },
@@ -63,11 +63,11 @@ class ShoppingCart extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 10),
-            child: Container(
+            child: SizedBox(
                 height: 50,
                 width: double.infinity,
                 child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(backgroundColor: Color.fromRGBO(51, 102, 102, 1)),
+                    style: ElevatedButton.styleFrom(backgroundColor: const Color.fromRGBO(51, 102, 102, 1)),
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => PayPage(totalPrice: totalPrice)));
                     },

@@ -1,5 +1,4 @@
 import 'package:al_imports/services/auth_service.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SignUpController {

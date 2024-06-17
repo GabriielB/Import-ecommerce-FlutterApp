@@ -13,13 +13,13 @@ class ProductDetailsPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Detalhes do produto",
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
-        backgroundColor: Color.fromRGBO(51, 102, 102, 1),
-        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: const Color.fromRGBO(51, 102, 102, 1),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -30,7 +30,7 @@ class ProductDetailsPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
+                SizedBox(
                   width: 300,
                   height: 300,
                   child: Image.asset(
@@ -47,7 +47,7 @@ class ProductDetailsPage extends StatelessWidget {
               padding: const EdgeInsets.all(20),
               width: double.infinity,
               height: 400,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(40),
@@ -59,7 +59,7 @@ class ProductDetailsPage extends StatelessWidget {
                     children: [
                       Text(
                         product.name.toUpperCase(),
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 24),
                       )
                     ],
@@ -70,7 +70,7 @@ class ProductDetailsPage extends StatelessWidget {
                   Text(
                     product.descripton,
                     textAlign: TextAlign.justify,
-                    style: TextStyle(fontSize: 14),
+                    style: const TextStyle(fontSize: 14),
                   )
                 ],
               ),
@@ -79,7 +79,7 @@ class ProductDetailsPage extends StatelessWidget {
         ),
       ),
       bottomSheet: BottomAppBar(
-        color: Color.fromRGBO(51, 102, 102, 1),
+        color: const Color.fromRGBO(51, 102, 102, 1),
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           alignment: Alignment.center,

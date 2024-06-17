@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
   List screens = [
     const ListProductsPage(),
     const ShoppingCart(),
-    ProfilePage()
+    const ProfilePage()
   ];
 
   @override
